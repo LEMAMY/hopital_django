@@ -1,32 +1,22 @@
-"""
-URL configuration for hopital project.
-
-The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/5.2/topics/http/urls/
-Examples:
-Function views
-    1. Add an import:  from my_app import views
-    2. Add a URL to urlpatterns:  path('', views.home, name='home')
-Class-based views
-    1. Add an import:  from other_app.views import Home
-    2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
-Including another URLconf
-    1. Import the include() function: from django.urls import include, path
-    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
-"""
-# hopital/urls.py
-from django.contrib import admin
-from django.urls import path, include
+# patients/urls.py
+from django.urls import path
+from . import views
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', include('patients.urls')),
+    path('', views.accueil, name='accueil'),
+    path('fiche/', views.fiche_patient, name='fiche_patient'),
+]
+# patients/urls.py
+from django.urls import path
+from . import views
+
+urlpatterns = [
+    path('', views.accueil, name='accueil'),
+    path('fiche/', views.fiche_patient, name='fiche_patient'),
+    path('services/', views.services, name='services'),  # 👈 nouvelle URL
+    path('reservation/', views.reservation, name='reservation'),
+    path('contact/', views.contact, name='contact'),
+
 ]
 
-from django.conf import settings
-from django.conf.urls.static import static
-
-urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
-urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
-urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
